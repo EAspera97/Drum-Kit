@@ -5,6 +5,7 @@ var numberOfDrumButtons = document.querySelectorAll(".drum").length; // Created 
 for (i = 0; i < numberOfDrumButtons; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function () {
         playSound(this.innerHTML);
+        buttonAnimation(this.innerHTML);
     });
 }
 
@@ -12,6 +13,7 @@ for (i = 0; i < numberOfDrumButtons; i++) {
 
 document.addEventListener("keydown", function (event) {
     playSound(event.key);
+    buttonAnimation(event.key);
 });
 
 // Function to play a sound acording to a given key, key = letter of the button clicked or key pressed
@@ -48,5 +50,13 @@ function playSound(key) {
             break;
         default: console.log(character);
     }
+}
+
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function () {
+        activeButton.classList.remove("pressed");
+    }, 100)
 }
 
